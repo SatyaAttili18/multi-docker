@@ -13,3 +13,10 @@ after_success:
   - docker build -t satya18/multi-nginx ./nginx
   - docker build -t satya18/multi-server ./server
   - docker build -t satya18/multi-worker ./worker
+  # Login to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push them to docker hub 
+  - docker push satya18/multi-client
+  - docker push satya18/multi-nginx
+  - docker push satya18/multi-server
+  - docker push satya18/multi-worker
